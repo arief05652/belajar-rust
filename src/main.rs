@@ -1,3 +1,5 @@
+mod data_struct;
+mod core;
 mod function;
 mod operator;
 mod strings;
@@ -11,6 +13,9 @@ mod flow; // <- module / nama file tempat register
  */
 use flow::control_flow::{flow, result_handling, option_handling};
 use flow::loops::{self, looping};
+use core::{ownership, borrowing};
+use data_struct::structs::{User, Person};
+use data_struct::enumerate::{Person as p, Gender, Access};
 
 use std::{f32, i8, u8};
 
@@ -62,8 +67,12 @@ fn main() {
     println!("tuple: {}", tuple.1); // ambil datanya pake .{index}
     println!("array: {}", array[1]); // ambil datanya pake [index]
 
-    // CONSTANT
-    /*
+    // destructuring, untuk bongkar struktur data
+    match tuple {
+        (x, y) => println!("tuple({}, {})", x, y),
+    }
+
+    /* CONSTANT
      * tidak bisa di re-assign dan harus pake tipe
      */
     const TOKEN: &str = "1jsdkajsmd012esjdm";
@@ -79,10 +88,10 @@ fn main() {
     looping(); // <- pakai langsung
     loops::dummy_function(); // <- dari self group
 
-    // function
+    // FUNCTION
     function::functions("ucup");
 
-    // string
+    // STRING
     strings::string();
 
     // ERROR HANDLING
@@ -92,6 +101,11 @@ fn main() {
         Err(pesan) => println!("Result Handling: {}", pesan),
     }
 
+    // kalau butuh handle tapi cuman 1 kondisi aja pake `if let`
+    // if let Ok(hasil) = result {
+    //     println!("Result Handling: {}", hasil);
+    // }
+
     let option = option_handling("saepul");
     // let option = option_handling("saepul").unwrap(); <- via unwrap kalo kosong langsung crash tanpa info
     // let option = option_handling("saepul").expect("error kosong"); <- via expect sama kaya unwrap tapi bisa custom info
@@ -99,4 +113,56 @@ fn main() {
         Some(pesan) => println!("Option: {}", pesan),
         None => println!("Option None"),
     }
+
+    /* TYPE CASTING
+     * - angka -> angka: pakai as
+     * - str -> angka: pakai .parse(), dan mengembalikan `Result`
+     * - &str -> String: pakai .into()
+     * - String -> &str: pakai .as_str()
+     */
+     let x = 10;
+     let y: f32 = x as f32; // <- pake as
+     println!("angka -> angka: {}", y);
+
+     let x: &str = "43";
+     let y: u8 = x.parse().unwrap();
+     println!("&str -> angka: {}", y);
+
+     let x: &str = "dummy";
+     let y: String = x.into();
+     println!("&str -> String: {}", y);
+
+     let x: String = String::from("dummys");
+     let y: &str = x.as_str();
+     println!("String -> &str: {}", y);
+
+     // OWNERSHIP
+     ownership::owner();
+
+     // BORROWING
+     borrowing::borrow();
+
+     // STRUCT & IMPL
+     let orang = Person{jenis: String::from("male")};
+     // pakai mutable kalau ada operasi yang butuh perubahan
+     let mut username = User::new(String::from("ucup"), 19, orang);
+
+     // ganti value struct
+     username.ganti_jenis(String::from("female"));
+
+     username.person();
+     println!("Name: {}", username.get_name());
+
+     // ENUMERATE
+     let status = Some(Access::Admin(String::from("admin")));
+     let person_enum = p::new(String::from("Haikal"), Gender::LakiLaki, status);
+
+     if let Some(data) = person_enum {
+         let status = data.get_status();
+         let gender = data.get_gender();
+         let person = data.get_person();
+         println!("Person-Person: {:?}", person);
+         println!("Person-Gender: {:?}", gender);
+         println!("Person-Status: {}", status);
+     }
 }
