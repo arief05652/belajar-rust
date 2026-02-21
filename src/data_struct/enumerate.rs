@@ -1,3 +1,6 @@
+/* di enum kalo ga kepakai field nya akan kasih pemberitahuan `Never Constructed`
+ * dan lebih baik di hapus
+ */
 #[derive(Debug)]
 pub enum Access {
     Admin(String),

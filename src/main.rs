@@ -16,6 +16,7 @@ use flow::loops::{self, looping};
 use core::{ownership, borrowing};
 use data_struct::structs::{User, Person};
 use data_struct::enumerate::{Person as p, Gender, Access};
+use data_struct::vector::vector_heap;
 
 use std::{f32, i8, u8};
 
@@ -165,4 +166,6 @@ fn main() {
          println!("Person-Gender: {:?}", gender);
          println!("Person-Status: {}", status);
      }
+     // VECTOR
+     vector_heap();
 }
