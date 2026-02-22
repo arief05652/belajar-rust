@@ -1,4 +1,4 @@
-/* struct dipakai untuk membuattipe data baru yang key dan value nya bisa ditentukan
+/* struct dipakai untuk membuat tipe data baru yang key dan value nya bisa ditentukan
  * fungsinya mirip class di oop, di struct semuanya bersifat private harus pake keyword
  * `pub` jika mau pakai dari luar scope.
  *

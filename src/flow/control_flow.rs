@@ -34,6 +34,9 @@ pub fn flow() {
 }
 
 /* ERROR HANDLING
+ * - error handling ada 2 recoverable itu mengembalikan enum dan unrecoverable dengan macro
+ *   yang langsung stop program
+ *
  * - Result<T, E>: dipakai untuk operasi yang bisa jalan dan tidak
  *                 dipakai bersama `Ok()` dan `Err()`
  * - Option<T>: dipakai untuk operasi yang bisa ada atau none

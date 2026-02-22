@@ -48,4 +48,9 @@ pub fn vector_heap() {
     data3.extend([1, 2, 3]);
     data3.swap_remove(0);
     println!("swap-remove: {data3:?}");
+
+    // cek data tanpa mengambilnya
+    if data3.contains(&2) {
+        println!("angka 3 ada di vector");
+    }
 }

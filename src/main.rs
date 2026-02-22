@@ -13,10 +13,11 @@ mod flow; // <- module / nama file tempat register
  */
 use flow::control_flow::{flow, result_handling, option_handling};
 use flow::loops::{self, looping};
-use core::{ownership, borrowing};
+use core::{ownership, borrowing, generic};
 use data_struct::structs::{User, Person};
 use data_struct::enumerate::{Person as p, Gender, Access};
 use data_struct::vector::vector_heap;
+use data_struct::hash_map::hashmap;
 
 use std::{f32, i8, u8};
 
@@ -168,4 +169,10 @@ fn main() {
      }
      // VECTOR
      vector_heap();
+
+     // HASHMAP
+     hashmap();
+
+     // generic type
+     generic::generic_type();
 }
