@@ -1,3 +1,5 @@
+// Docs: https://doc.rust-lang.org/std/fs/index.html
+
 use std::fs;
 use std::io::Result;
 
@@ -15,6 +17,8 @@ pub fn file_system() {
     rename_file("data1.txt", "data2.txt").expect("Error rename");
 }
 
+// kalo berhasil ga return apapun dan klo error berikan pesan
+// sebutannya unit type / mirip void
 fn copy_file(from: &str, to: &str) -> Result<()> {
     fs::copy(from, to)?; // <- propagation: jika ada error langsung stop di baris ini
     Ok(())
