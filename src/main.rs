@@ -18,6 +18,7 @@ use data_struct::structs::{User, Person};
 use data_struct::enumerate::{Person as p, Gender, Access};
 use data_struct::vector::vector_heap;
 use data_struct::hash_map::hashmap;
+use data_struct::box_data::box_heap;
 
 use std::{f32, i8, u8};
 
@@ -175,4 +176,7 @@ fn main() {
 
      // generic type
      generic::generic_type();
+
+     // Box smart pointer
+     box_heap();
 }
