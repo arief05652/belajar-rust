@@ -6,3 +6,9 @@ pub trait Suara {
     fn bersuara(&self) -> &str;
     fn set_suara(&mut self, suara: String);
 }
+
+// === inherit trait
+// ketika struct impl trait ini maka harus impl trait Hewan juga
+pub trait Bergerak: Suara {
+    fn berjalan(&self) -> &str;
+}
