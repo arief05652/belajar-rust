@@ -52,14 +52,15 @@ fn rwlock_sync() {
 
         let handle = thread::spawn(move || {
             let r = d.read().unwrap();
-            println!("Read: {}", *r);
+            return format!("Read: {}", *r);
         });
 
         handles.push(handle);
     }
 
     for h in handles {
-        h.join().unwrap();
+        let data = h.join().unwrap();
+        println!("{data}")
     }
 }
 
